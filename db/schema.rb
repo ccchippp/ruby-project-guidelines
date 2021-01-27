@@ -1,3 +1,3 @@
-ActiveRecord::Schema.define(version: 5) do
+ActiveRecord::Schema.define(version:) do
 
   end
