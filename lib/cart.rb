@@ -1,5 +1,6 @@
 class Cart < ActiveRecord::Base
-    has_many :items, :user
+    belongs_to :user
+    has_many :items
 
     #attr_accessor :user_id, :item_id
     
