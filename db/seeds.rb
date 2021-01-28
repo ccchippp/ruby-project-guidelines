@@ -1,6 +1,5 @@
 User.destroy_all
 Cart.destroy_all
-Item.destroy_all
 
 
 user_1 = User.create(username: "user_one")
@@ -8,17 +7,20 @@ user_1 = User.create(username: "user_one")
 # user_3 = User.create(username: "user_three")
 # user_4 = User.create(username: "user_four")
 
+item_1 = Item.create(item: "banana", price: 7)
+
 cart_1 = Cart.create()
 
-item_1 = Item.create(item: "banana", price: 0.25)
-
 cart_1.user_id = user_1.id
-cart_1.item_id = item_1.id
+cart_1.items_id = item_1
+#cart_1.items_id[item_1.item] = item_1.price
+cart_1.save
 
-#item_2 = 
-#item_3 = 
-#item_4 = 
-#item_5 = 
+
+# item_2 = 
+# item_3 = 
+# item_4 = 
+# item_5 = 
 
 
 
