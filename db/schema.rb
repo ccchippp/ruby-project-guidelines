@@ -14,7 +14,8 @@ ActiveRecord::Schema.define(version: 4) do
 
   create_table "carts", force: :cascade do |t|
     t.integer "user_id"
-    t.json "items"
+    t.integer "items_id"
+    t.index ["items_id"], name: "index_carts_on_items_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
