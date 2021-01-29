@@ -6,7 +6,8 @@ class Cart < ActiveRecord::Base
         items << item
     end
     # syntactic sugar ;)
-    
+
+    # Shows the total price of all objects currentlly in cart
     def total_price
         self.items.map(&:price).inject(:+)
     end
@@ -15,11 +16,14 @@ class Cart < ActiveRecord::Base
     def item_count
         self.items.count
     end
+
+    # Removes item from cart
     def remove_item(product)
         trash = product.id
         self.items.destroy(trash)
     end
     
+    # Returns the name of current items in cart
     def view_cart
         self.items.collect {|i| i.item}
     end
