@@ -46,7 +46,7 @@ class NotAmazon < ActiveRecord::Base
         if NotAmazon.username == "Owner" || NotAmazon.username == "owner"
             puts "Hello Sir I see that you are the owner."
             puts "What would you like to work on today?"
-            puts "      <<1. Check Inventory>>"
+            puts "      <<1. Check Stock>>"
             puts "      <<2. Restock Inventory>>"
             puts "      <<3. Check List of All Customers>>"
             puts "      <<4. Check all Orders>>"
@@ -86,8 +86,10 @@ class NotAmazon < ActiveRecord::Base
         if answer == "yes"
             puts "What would you like to add? This is our current selection of what's in stock today: "
             if Item.all.empty?
-                puts "Sorry looks like we're out of stock of everything."
+                puts "Sorry looks like we're out of stock of everything. Please come back later after the owner restocks."
             else
+                # code for making a purchase, add items to cart and then checkout when customer is ready
+                # some code here
                 Item.display_all_items
             end
         end
@@ -99,7 +101,7 @@ class NotAmazon < ActiveRecord::Base
     # Task input for owner
     def self.owner_task
         reponse = gets.chomp
-        if reponse == "1" #=> check inventory
+        if reponse == "1" #=> check Stock
             Item.display_all_items
         elsif reponse == "2" #=> restock inventory
             NotAmazon.inventory.each{|item_name, item_price| Item.create(item: item_name, price: item_price)}
@@ -117,7 +119,7 @@ class NotAmazon < ActiveRecord::Base
             puts "you input 'exit'"
         elsif reponse == "help"
             puts "<<** These are the task you can work on today. Please enter a digit <1 to 5> or enter 'exit' to quit out **>>"
-            puts "      <<1. Check Inventory>>"
+            puts "      <<1. Check Stock >>"
             puts "      <<2. Restock Inventory>>"
             puts "      <<3. Check List of All Customers>>"
             puts "      <<4. Check all Orders>>"

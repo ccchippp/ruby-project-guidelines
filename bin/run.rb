@@ -29,3 +29,15 @@ require 'pry'
 # binding.pry
 
 NotAmazon.open_store
+
+
+=begin
+things to do:
+    > finish make_purchase
+        adding stuff to cart
+        probably write seperate method for checking out
+    > in owner_task:
+        customer list
+        check orders
+        add new item to inventory
+=end
