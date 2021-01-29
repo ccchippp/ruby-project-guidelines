@@ -95,6 +95,7 @@ class NotAmazon < ActiveRecord::Base
             puts "This is our current selection of what's in stock today: "
             puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
             if Item.all.empty?
+                puts ""
                 puts "Sorry looks like we're out of stock of everything. Please come back later after the owner restocks."
             else
                 Item.display_all_items
