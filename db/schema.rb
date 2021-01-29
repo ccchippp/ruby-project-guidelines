@@ -13,21 +13,19 @@
 ActiveRecord::Schema.define(version: 4) do
 
   create_table "carts", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "items_id"
-    t.index ["items_id"], name: "index_carts_on_items_id"
-    t.index ["user_id"], name: "index_carts_on_user_id"
+    t.integer "user"
+    t.integer "items"
   end
 
   create_table "items", force: :cascade do |t|
+    t.integer "cart_id"
     t.string "item"
     t.float "price"
+    t.index ["cart_id"], name: "index_items_on_cart_id"
   end
 
   create_table "orders", force: :cascade do |t|
     t.boolean "processed"
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

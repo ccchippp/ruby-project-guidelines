@@ -25,12 +25,11 @@ class NotAmazon
         puts "Please enter your Username: "
         NotAmazon.username = gets.chomp
         user = User.create(username: NotAmazon.username)
-        p User.all
         puts "Hello #{NotAmazon.username}"
         puts "How can we help you? Want to buy something? (yes or no)"
         answer = NotAmazon.reponse
         if answer == "yes"
-            NotAmazon.make_purchase
+            NotAmazon.make_purchase(user)
             puts "Thank you for your visit!"
         elsif answer == "no"
             puts "WHY YOU WASTING MY TIME THEN! LEAVE I HAVE OTHER CUSTOMERS... "
@@ -38,7 +37,7 @@ class NotAmazon
         puts "Make sure to leave 5 stars on yelp."
     end
 
-    def self.make_purchase
+    def self.make_purchase(user)
         puts "What would you like to purchase from our selection: "
     end
 

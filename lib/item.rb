@@ -1,10 +1,9 @@
 class Item < ActiveRecord::Base
-    belongs_to :cart
+    belongs_to :carts
+    has_many :users, through: :carts
 
-    # attr_accessor :item, :price
-    # def initialize(item, price)
-    #     @item = item
-    #     @price = price
-    # end
-
+    def self.newest_item
+       newnew = Item.all.last.item
+       "The newest item added to the shop is #{newnew}!"
+    end
 end
