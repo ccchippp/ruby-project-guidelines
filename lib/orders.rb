@@ -4,23 +4,24 @@ class Orders < ActiveRecord::Base
     has_many :items, through: :carts
 
     def self.display_all_orders
-        all = Order.all
+        all_orders = Orders.all
         x = 0
-        all.length.times do
-            temp = all[x].carts
-            cart = Cart.find_by(user_id: temp[x].user_id)
-            user = User.find_by(user_id: temp[x].user_id)
-            cart_items = cart.items
-            puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-            puts "-------------------------------------"
-            puts "#{user.username}'s Order:  "
-            puts "-------------------------------------"
-            y = 0
-            cart_items.length.times do
-                puts ">> Item: #{cart_items[y].item} == > Price? #{cart_items[y].price}"
-                y += 1
+        all_orders.length.times do
+            temp = all_orders[x].carts
+            if temp != []
+                user = User.find_by(id: temp[0].user_id)
+                cart_items = temp[0].items
+                puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+                puts "-------------------------------------"
+                puts "#{user.username}'s Order:  "
+                puts "-------------------------------------"
+                y = 0
+                cart_items.length.times do
+                    puts ">> Item: #{cart_items[y].item} == > Price? #{cart_items[y].price}"
+                    y += 1
+                end
+                puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
             end
-            puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
             x += 1
         end
     end

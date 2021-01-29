@@ -50,6 +50,9 @@ require 'pry'
 # tempp = Orders.all[-1].carts
 # puts "~~~~~~"
 # puts "~~~~~~"
+# p tempp
+# puts "~~~~~~"
+# puts "~~~~~~"
 # ans = Cart.find_by(user_id: tempp[0].user_id)
 # p ans.items
 # puts "~~~~~~"

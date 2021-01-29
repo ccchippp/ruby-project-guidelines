@@ -4,11 +4,11 @@ class NotAmazon < ActiveRecord::Base
 
     # defualt items store always tends to have
     @@backroom = {
-        "coffee" => 16.00, "shirt" => 20.00, "socks" => 5.00
-        , "coffee" => 16.00, "shirt" => 20.00, "socks" => 5.00
-        , "coffee" => 16.00, "shirt" => 20.00, "socks" => 5.00
-        , "coffee" => 16.00, "shirt" => 20.00, "socks" => 5.00
-        , "coffee" => 16.00, "shirt" => 20.00, "socks" => 5.00
+        :coffee => 5.10, :shirt => 20.00, :cookie => 2.50,
+        :orange_soda => 2.75, :pants => 30.00, :apple_pie => 1.50,
+        :fruit_punch => 2.50, :underwear => 7.20, :ramen => 0.25,
+        :gatorade => 1.75, :socks => 9.50, :chips => 2.00,
+        :water => 0.50, :hat => 11.25, :bit_coin => 36247.00
     }
 
     def self.backroom
@@ -122,10 +122,15 @@ class NotAmazon < ActiveRecord::Base
             Item.display_all_items
         elsif response == "2" #=> restock defualt items inventory (item database)
             NotAmazon.backroom.each{|item_name, item_price| Item.create(item: item_name, price: item_price)}
+            puts "All done restocking boss!"
         elsif response == "3" #=> check customer list
             User.display_all_users
         elsif response == "4" #=> check orders
-            Orders.display_all_orders
+            if Orders.all == []
+                puts "There are currently no orders."
+            else
+                Orders.display_all_orders
+            end
         elsif response == "5" #=> add new item to inventory
             puts "What's the name of the new item you're adding? (enter string)"
             item_name = gets.chomp
@@ -135,18 +140,8 @@ class NotAmazon < ActiveRecord::Base
             puts "New item >>#{new_item}<< has been added to the Inventory."
         elsif response == "exit" #=> exits
             puts "Ok! Peace out Boss! (☞ ͡° ͜ʖ ͡°)☞"
-        elsif response == "help"
-            puts "<<** These are the task you can work on today. Please enter a digit <1 to 5> or enter 'exit' to quit out **>>"
-            puts "      <<1. Check Stock >>"
-            puts "      <<2. Restock Inventory>>"
-            puts "      <<3. Check List of All Customers>>"
-            puts "      <<4. Check all Orders>>"
-            puts "      <<5. Add New Item to Inventory>>"
-            puts "  <<Exit>>"
-            NotAmazon.owner_task
         else
             puts "Sorry Boss but you need to enter a digit from 1 to 5 or 'exit' if you'd like to quit out."
-            puts ">>** You can also enter help to see what you can work on today **<<"
             NotAmazon.owner_task
         end
 

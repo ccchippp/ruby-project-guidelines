@@ -13,4 +13,5 @@ class Cart < ActiveRecord::Base
     def item_count
         self.items.count
     end
+    
 end
