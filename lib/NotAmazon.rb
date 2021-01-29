@@ -37,8 +37,13 @@ class NotAmazon < ActiveRecord::Base
     #=> Main Store Method
     def self.open_store
 
-        puts "Hello welcome to NotAmazon™"
+        puts ""
+        puts "( ͡° ͜ʖ ( ͡° ͜ʖ ( ͡° ͜ʖ ( ͡° ͜ʖ ͡°) ͜ʖ ͡°)ʖ ͡°)ʖ ͡°)"
+        puts "~~~~~~Hello welcome to NotAmazon™~~~~~~"
+        puts "( ͡° ͜ʖ ( ͡° ͜ʖ ( ͡° ͜ʖ ( ͡° ͜ʖ ͡°) ͜ʖ ͡°)ʖ ͡°)ʖ ͡°)"
+        puts ""
         puts "Please enter your Username: "
+
         NotAmazon.username = gets.chomp
 
         # basically user login and checks if previously a customer or if owner
@@ -64,7 +69,7 @@ class NotAmazon < ActiveRecord::Base
                 NotAmazon.make_purchase(user)
                 puts "Thank you for your visit!"
             elsif answer == "no"
-                puts "WHY YOU WASTING MY TIME THEN! LEAVE I HAVE OTHER CUSTOMERS... "
+                puts "WHY YOU WASTING MY TIME THEN! LEAVE I HAVE OTHER CUSTOMERS... ( ͡ಠ ʖ̯ ͡ಠ)"
             end
             puts "Make sure to leave 5 stars on yelp."
         end
@@ -123,6 +128,7 @@ class NotAmazon < ActiveRecord::Base
 
     def self.buyer_task(user)
 
+        puts ""
         puts "What would you like to do next?"
         puts "You can do one of the following, just enter a digit from 1 to 5." 
         puts "     << 1. View cart >>"
@@ -138,12 +144,21 @@ class NotAmazon < ActiveRecord::Base
             user.show_cart 
             NotAmazon.buyer_task(user)
         elsif response == "2" # code to remove item
+            puts ""
             puts "***************This is supposed to remove item from cart***************"
+            puts "                      (」ﾟﾛﾟ)｣NOOOooooo━"
+            puts ""
             NotAmazon.buyer_task(user)
         elsif response == "3" # code to checkout
+            puts ""
             puts "************This is supposed to checkout and proccess order************"
+            puts "                      (」ﾟﾛﾟ)｣NOOOooooo━"  
+            puts ""
         elsif response == "4" # code to view orders
+            puts ""
             puts "************This is supposed to show past orders************"
+            puts "                      (」ﾟﾛﾟ)｣NOOOooooo━"
+            puts ""
             NotAmazon.buyer_task(user)
         elsif response == "5" # code to leave without checking out
             puts "Ok, that's fine."
@@ -157,6 +172,7 @@ class NotAmazon < ActiveRecord::Base
     # Task input for owner
     def self.owner_task
 
+        puts ""
         puts "What would you like to work on today?"
         puts "      <<1. Check Stock>>"
         puts "      <<2. Restock Inventory>>"
