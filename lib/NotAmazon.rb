@@ -128,6 +128,8 @@ class NotAmazon < ActiveRecord::Base
             puts ">>** You can also enter help to see what you can work on today **<<"
             NotAmazon.owner_task
         end
+
+        puts "Would you like to do another task?"
     end
 
 end
