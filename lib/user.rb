@@ -27,10 +27,6 @@ class User < ActiveRecord::Base
         puts "============================================"
     end
 
-    # def create_order(cart)
-
-    # end
-
     def self.display_all_users
         all = User.all
         x = 0
