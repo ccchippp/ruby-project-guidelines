@@ -34,15 +34,6 @@ class NotAmazon < ActiveRecord::Base
         end
     end
 
-    #=> helper method checks if user exists in database
-    # def self.user_in_database
-    #     if !(User.find_by(username: NotAmazon.username))
-    #         return false
-    #     else
-    #         return true
-    #     end
-    # end
-
     #=> Main Store Method
     def self.open_store
 
@@ -53,13 +44,6 @@ class NotAmazon < ActiveRecord::Base
         # basically user login and checks if previously a customer or if owner
         if NotAmazon.username == "Owner" || NotAmazon.username == "owner"
             puts "Hello Sir I see that you are the owner."
-            puts "What would you like to work on today?"
-            puts "      <<1. Check Stock>>"
-            puts "      <<2. Restock Inventory>>"
-            puts "      <<3. Check List of All Customers>>"
-            puts "      <<4. Check all Orders>>"
-            puts "      <<5. Add New Item to Inventory>>"
-            puts "  <<Exit>>"
             NotAmazon.owner_task
         elsif User.find_by(username: NotAmazon.username)
             user = User.find_by(username: NotAmazon.username)
@@ -96,14 +80,14 @@ class NotAmazon < ActiveRecord::Base
         answer = NotAmazon.response
 
         if answer == "yes"
-            puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+            puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
             puts "This is our current selection of what's in stock today: "
-            puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+            puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
             if Item.all.empty?
                 puts "Sorry looks like we're out of stock of everything. Please come back later after the owner restocks."
             else
                 Item.display_all_items
-                puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+                puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
                 NotAmazon.select_item(user)
                 puts "All done? What would you like to do now?"    
             end
@@ -173,6 +157,14 @@ class NotAmazon < ActiveRecord::Base
     # Task input for owner
     def self.owner_task
 
+        puts "What would you like to work on today?"
+        puts "      <<1. Check Stock>>"
+        puts "      <<2. Restock Inventory>>"
+        puts "      <<3. Check List of All Customers>>"
+        puts "      <<4. Check all Orders>>"
+        puts "      <<5. Add New Item to Inventory>>"
+        puts "  <<Exit>>"
+
         response = gets.chomp
 
         # owner tasks
@@ -208,7 +200,6 @@ class NotAmazon < ActiveRecord::Base
             puts "Would you like to do another task? (yes or no)"
             response = NotAmazon.response
             if response == "yes"
-                puts "What would you like to work on today?"
                 NotAmazon.owner_task
             else
                 puts "Ok! Peace out Boss! (☞ ͡° ͜ʖ ͡°)☞"

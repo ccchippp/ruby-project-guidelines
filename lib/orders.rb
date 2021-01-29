@@ -11,16 +11,17 @@ class Orders < ActiveRecord::Base
             if temp != []
                 user = User.find_by(id: temp[0].user_id)
                 cart_items = temp[0].items
-                puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-                puts "-------------------------------------"
-                puts "#{user.username}'s Order:  "
-                puts "-------------------------------------"
+                puts "............................................................"
+                puts "============================================================"
+                puts "===============>> #{user.username}'s Order <<==============="
+                puts "============================================================"
                 y = 0
                 cart_items.length.times do
-                    puts ">> Item: #{cart_items[y].item} == > Price? #{cart_items[y].price}"
+                    puts "   >> Item: #{cart_items[y].item} ===== > Price? #{cart_items[y].price}"
                     y += 1
                 end
-                puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+                puts "============================================================"
+                puts "............................................................"
             end
             x += 1
         end
