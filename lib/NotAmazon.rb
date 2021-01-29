@@ -46,6 +46,7 @@ class NotAmazon < ActiveRecord::Base
 
         NotAmazon.username = gets.chomp
 
+        puts ""
         # basically user login and checks if previously a customer or if owner
         if NotAmazon.username == "Owner" || NotAmazon.username == "owner"
             puts "Hello Sir I see that you are the owner."
@@ -61,6 +62,7 @@ class NotAmazon < ActiveRecord::Base
             puts "Hello #{NotAmazon.username}, Welcome to NotAmazon!"
         end
 
+        puts ""
         # If user is not the owner, ask if they wanna buy something
         if NotAmazon.username != "Owner" && NotAmazon.username != "owner"
             puts "How can we help you? Want to buy something? (yes or no)"
@@ -69,7 +71,9 @@ class NotAmazon < ActiveRecord::Base
                 NotAmazon.make_purchase(user)
                 puts "Thank you for your visit!"
             elsif answer == "no"
+                puts ""
                 puts "WHY YOU WASTING MY TIME THEN! LEAVE I HAVE OTHER CUSTOMERS... ( ͡ಠ ʖ̯ ͡ಠ)"
+                puts ""
             end
             puts "Make sure to leave 5 stars on yelp."
         end
@@ -80,6 +84,7 @@ class NotAmazon < ActiveRecord::Base
     # purchase method for user, adds items to cart and lets user checkout or just leave
     def self.make_purchase(user)
 
+        puts ""
         cart = Cart.find_by(user_id: user.id)
         puts "Would you like to add to your cart? (yes or no)"
         answer = NotAmazon.response
@@ -108,6 +113,7 @@ class NotAmazon < ActiveRecord::Base
 
     #buyer selects item
     def self.select_item(user)
+        puts ""
         puts "So, what would you like to buy? (enter item name)"
         item_name = gets.chomp
         selected = Item.find_by(item: item_name)
@@ -117,6 +123,7 @@ class NotAmazon < ActiveRecord::Base
         else
             puts "Great choice! We will add it to your cart."
             user.add_item(selected)
+            puts ""
             puts "Would you like to buy more? (yes or no)"
             answer = NotAmazon.response
             if answer =="yes"
@@ -136,6 +143,7 @@ class NotAmazon < ActiveRecord::Base
         puts "     << 3. Checkout >>"
         puts "     << 4. View Orders >>"
         puts "     << 5. Leave >>"
+        puts ""
 
         response = gets.chomp
         
@@ -180,9 +188,11 @@ class NotAmazon < ActiveRecord::Base
         puts "      <<4. Check all Orders>>"
         puts "      <<5. Add New Item to Inventory>>"
         puts "  <<Exit>>"
+        puts ""
 
         response = gets.chomp
 
+        puts ""
         # owner tasks
         if response == "1" #=> check Stock
             Item.display_all_items
@@ -211,6 +221,7 @@ class NotAmazon < ActiveRecord::Base
             NotAmazon.owner_task
         end
 
+        puts ""
         # ask owner if they want to do more task if they didn't try to exit
         if response != "exit"
             puts "Would you like to do another task? (yes or no)"
