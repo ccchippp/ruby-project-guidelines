@@ -18,7 +18,13 @@ class User < ActiveRecord::Base
     #         end
     # end
 
-
-
+    def self.display_all_users
+        all = User.all
+        x = 0
+        all.length.times do
+            puts "Customer #{x+1}:=>> #{all[x].username}"
+            x += 1
+        end
+    end
 
 end
