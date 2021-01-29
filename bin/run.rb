@@ -2,8 +2,8 @@ require_relative '../config/environment'
 require 'pry'
 
 # User.destroy_all
-Item.destroy_all
-Cart.destroy_all
+# Item.destroy_all
+# Cart.destroy_all
 
 # chip = User.create(username: "Chip")
 # abe = User.create(username: "Abraham")
@@ -15,12 +15,17 @@ Cart.destroy_all
 # socks = Item.create(item: "socks", price: 5.00)
 
 # chip.carts << chips_cart
+
+# temp = Cart.find_by(user_id: chip.id)
+# p temp.items == []
+
 # chips_cart.items << coffee
 # chips_cart.items << shirt
 # chips_cart.items << socks
 
-# temp = User.find_by(username: "Abraham")
-# p temp
+# p temp.items != []
+# p abe.carts
+
 # binding.pry
 
 NotAmazon.open_store
