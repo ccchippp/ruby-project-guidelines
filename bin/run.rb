@@ -14,6 +14,8 @@ chips_cart = Cart.create
 coffee = Item.create(item: "coffee", price: 16.00)
 shirt = Item.create(item: "shirt", price: 20.00)
 socks = Item.create(item: "socks", price: 5.00)
+book = Item.create(item: "book", price: 18.00)
+
 
 chip.carts << chips_cart
 chips_cart.items << coffee
