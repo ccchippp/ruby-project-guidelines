@@ -90,6 +90,7 @@ class NotAmazon < ActiveRecord::Base
         answer = NotAmazon.response
 
         if answer == "yes"
+            puts ""
             puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
             puts "This is our current selection of what's in stock today: "
             puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
@@ -162,6 +163,7 @@ class NotAmazon < ActiveRecord::Base
             puts "************This is supposed to checkout and proccess order************"
             puts "                      (」ﾟﾛﾟ)｣NOOOooooo━"  
             puts ""
+            NotAmazon.buyer_task(user)
         elsif response == "4" # code to view orders
             puts ""
             puts "************This is supposed to show past orders************"
