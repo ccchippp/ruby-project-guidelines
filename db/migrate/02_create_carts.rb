@@ -1,15 +1,8 @@
 class CreateCarts < ActiveRecord::Migration[6.1]
     def change
       create_table :carts do |t|
-        t.references :user
-        serialize :config, Hash
+        t.integer :user_id
+        t.integer :item_id
       end
     end
   end
-
-# chip.cart.to_a.map(&:serializable_hash)
-
-# hash = { }
-# hash[:a] = 'a'
-# hash[:a]
-# # => 'a'
