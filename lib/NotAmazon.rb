@@ -72,7 +72,7 @@ class NotAmazon < ActiveRecord::Base
             puts "Hello #{NotAmazon.username}, Welcome to NotAmazon!"
         end
 
-        # If user is the owner, ask if they wanna buy something
+        # If user is not the owner, ask if they wanna buy something
         if NotAmazon.username != "Owner" && NotAmazon.username != "owner"
             puts "How can we help you? Want to buy something? (yes or no)"
             answer = NotAmazon.response
@@ -96,18 +96,71 @@ class NotAmazon < ActiveRecord::Base
         answer = NotAmazon.response
 
         if answer == "yes"
-            puts "What would you like to add? This is our current selection of what's in stock today: "
+            puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+            puts "This is our current selection of what's in stock today: "
+            puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
             if Item.all.empty?
                 puts "Sorry looks like we're out of stock of everything. Please come back later after the owner restocks."
             else
                 Item.display_all_items
-                # code for making a purchase, add items to cart and then checkout when customer is ready
-                # some code here
+                puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+                NotAmazon.select_item(user)
+                puts "All done? What would you like to do now?"    
             end
         end
 
         if cart.items.empty?
             puts "Your cart is empty."
+        else
+            puts "You can do one of the following, just enter a digit from 1 to 3." 
+            puts "     << 1. View cart >>"
+            puts "     << 2. Checkout >>"
+            puts "     << 3. Leave >>" 
+            NotAmazon.buyer_task(user)
+        end       
+
+    end
+
+    #buyer selects item
+    def self.select_item(user)
+        puts "So, what would you like to buy? (enter item name)"
+        item_name = gets.chomp
+        selected = Item.find_by(item: item_name)
+        if !(selected)
+            puts "Sorry but we do not sell that. Please input an item on the list."
+            NotAmazon.select_item(user)
+        else
+            puts "Great choice! We will add it to your cart."
+            user.add_item(selected)
+            puts "Would you like to buy more? (yes or no)"
+            answer = NotAmazon.response
+            if answer =="yes"
+                puts "Great!"
+                NotAmazon.select_item(user)
+            end
+        end
+    end
+
+    def self.buyer_task(user)
+
+        response = gets.chomp
+        
+        #buyer task
+        if response == "1" # code to view cart
+            user.show_cart
+            puts "What would you like to do next?"
+            puts "You can do one of the following, just enter a digit from 1 to 3." 
+            puts "     << 1. View cart >>"
+            puts "     << 2. Checkout >>"
+            puts "     << 3. Leave >>" 
+            NotAmazon.buyer_task(user) 
+        elsif response == "2" # code to checkout
+            puts "************This is supposed to checkout and proccess order************"
+        elsif response == "3" # code to leave without checking out
+            puts "Ok, that's fine."
+        else
+            puts "<< Please enter a digit between 1 and 3 >>"
+            NotAmazon.buyer_task(user)
         end
 
     end

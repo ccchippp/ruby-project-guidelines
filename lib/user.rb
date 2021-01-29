@@ -11,8 +11,20 @@ class User < ActiveRecord::Base
         self.carts.first << product
     end
 
-    def add_item(product)
-        self.carts.first << product
+    def show_cart
+        user_cart = Cart.find_by(user_id: self.id)
+        cart_items = user_cart.items
+        puts "==================>>Cart<<=================="
+        puts "============================================"
+        x = 0
+        cart_items.length.times do
+            puts "Item::  #{cart_items[x].item} ==> Price? #{cart_items[x].price}"
+            x += 1
+        end
+        puts "============================================"
+        puts ">>> Total: #{user_cart.total_price}"
+        puts "============================================"
+        puts "============================================"
     end
 
     # def create_order(cart)
