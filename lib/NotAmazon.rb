@@ -49,7 +49,7 @@ class NotAmazon < ActiveRecord::Base
         puts ""
         # basically user login and checks if previously a customer or if owner
         if NotAmazon.username == "Owner" || NotAmazon.username == "owner"
-            puts "Hello Sir I see that you are the owner."
+            puts "Hello Sir, I see that you are the owner."
             NotAmazon.owner_task
         elsif User.find_by(username: NotAmazon.username)
             user = User.find_by(username: NotAmazon.username)
