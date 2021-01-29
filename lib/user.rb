@@ -12,10 +12,14 @@ class User < ActiveRecord::Base
     end
 
     # def remove_item(product)
-    #     trash = self.carts.select { |i| i.items == product }
-    #     if trash != nil 
-    #         self.carts.select { |i| i.items == trash }.delete
-    #         end
+    #     # trash = self.carts.collect { |i| i.items == product }
+    #     # if trash != nil 
+    #     #     self.carts.select { |i| i.items == trash }.delete
+    #     #     end
+    #     #     chip.carts.collect {|i| i.items}.select {|i| i.ids}
+    #     trash = self.carts.collect { |i| i.items}.select {|i| i.ids == product.id}
+    #     trash
+    #     # [23] pry(main)> trash = chip.carts.collect { |i| i.items}.select {|i| i.ids == product.id}
     # end
 
     def self.display_all_users

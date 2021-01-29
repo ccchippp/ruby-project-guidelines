@@ -15,5 +15,13 @@ class Cart < ActiveRecord::Base
     def item_count
         self.items.count
     end
+    def remove_item(product)
+        trash = product.id
+        self.items.destroy(trash)
+    end
+    
+    def view_cart
+        self.items.collect {|i| i.item}
+    end
 
 end
