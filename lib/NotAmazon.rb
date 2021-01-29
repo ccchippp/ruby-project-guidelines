@@ -10,22 +10,38 @@ class NotAmazon
         @@username = username
     end
 
+    #=> helper method checking for response to be yes or no
     def self.reponse
         temp = gets.chomp
         if temp == "yes" || temp == "no"
             return temp
          else
-             puts "Please enter yes or no."
+             puts "Please enter yes or no: "
              NotAmazon.reponse
         end
     end
 
+    #=> helper method checks if user exists in database
+    def self.user_in_database
+        if !(User.find_by(username: NotAmazon.username))
+            return true
+        else
+            return false
+        end
+    end
+
+    #=> Main Store Method
     def self.open_store
         puts "Hello welcome to NotAmazon™"
         puts "Please enter your Username: "
         NotAmazon.username = gets.chomp
-        user = User.create(username: NotAmazon.username)
-        puts "Hello #{NotAmazon.username}"
+        if NotAmazon.user_in_database
+            user = User.find_by(username: NotAmazon.username)
+            puts "Hello #{NotAmazon.username}, Welcome back to NotAmazon, happy to see you again."
+        else
+            user = User.create(username: NotAmazon.username)
+            puts "Hello #{NotAmazon.username}, Welcome to NotAmazon!"
+        end
         puts "How can we help you? Want to buy something? (yes or no)"
         answer = NotAmazon.reponse
         if answer == "yes"
@@ -38,7 +54,11 @@ class NotAmazon
     end
 
     def self.make_purchase(user)
-        puts "What would you like to purchase from our selection: "
+        # if user.my_cart == []
+        #     puts "What would you like to purchase from our selection: "
+        # else
+        #     puts "Would you like to add to your previous or complete your purchase? (add or complete)"
+        # end
     end
 
 end
