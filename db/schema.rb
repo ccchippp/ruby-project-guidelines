@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 4) do
 
   create_table "carts", force: :cascade do |t|
-    t.integer "user"
-    t.integer "items"
+    t.integer "user_id"
+    t.integer "items_id"
   end
 
   create_table "items", force: :cascade do |t|

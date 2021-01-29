@@ -1,4 +1,4 @@
-class NotAmazon
+class NotAmazon < ActiveRecord::Base
     
     @@username = ""
     
@@ -24,9 +24,9 @@ class NotAmazon
     #=> helper method checks if user exists in database
     def self.user_in_database
         if !(User.find_by(username: NotAmazon.username))
-            return true
-        else
             return false
+        else
+            return true
         end
     end
 
@@ -39,7 +39,10 @@ class NotAmazon
             user = User.find_by(username: NotAmazon.username)
             puts "Hello #{NotAmazon.username}, Welcome back to NotAmazon, happy to see you again."
         else
-            user = User.create(username: NotAmazon.username)
+            User.create(username: NotAmazon.username)
+            user = User.find_by(username: NotAmazon.username)
+            user_cart = Cart.create
+            user.carts << user_cart
             puts "Hello #{NotAmazon.username}, Welcome to NotAmazon!"
         end
         puts "How can we help you? Want to buy something? (yes or no)"
@@ -54,11 +57,7 @@ class NotAmazon
     end
 
     def self.make_purchase(user)
-        # if user.my_cart == []
-        #     puts "What would you like to purchase from our selection: "
-        # else
-        #     puts "Would you like to add to your previous or complete your purchase? (add or complete)"
-        # end
+        
     end
 
 end
