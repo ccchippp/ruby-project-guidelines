@@ -112,10 +112,6 @@ class NotAmazon < ActiveRecord::Base
         if cart.items.empty?
             puts "Your cart is empty."
         else
-            puts "You can do one of the following, just enter a digit from 1 to 3." 
-            puts "     << 1. View cart >>"
-            puts "     << 2. Checkout >>"
-            puts "     << 3. Leave >>" 
             NotAmazon.buyer_task(user)
         end       
 
@@ -143,23 +139,32 @@ class NotAmazon < ActiveRecord::Base
 
     def self.buyer_task(user)
 
+        puts "What would you like to do next?"
+        puts "You can do one of the following, just enter a digit from 1 to 5." 
+        puts "     << 1. View cart >>"
+        puts "     << 2. Remove item from cart >>"
+        puts "     << 3. Checkout >>"
+        puts "     << 4. View Orders >>"
+        puts "     << 5. Leave >>"
+
         response = gets.chomp
         
         #buyer task
         if response == "1" # code to view cart
-            user.show_cart
-            puts "What would you like to do next?"
-            puts "You can do one of the following, just enter a digit from 1 to 3." 
-            puts "     << 1. View cart >>"
-            puts "     << 2. Checkout >>"
-            puts "     << 3. Leave >>" 
-            NotAmazon.buyer_task(user) 
-        elsif response == "2" # code to checkout
+            user.show_cart 
+            NotAmazon.buyer_task(user)
+        elsif response == "2" # code to remove item
+            puts "***************This is supposed to remove item from cart***************"
+            NotAmazon.buyer_task(user)
+        elsif response == "3" # code to checkout
             puts "************This is supposed to checkout and proccess order************"
-        elsif response == "3" # code to leave without checking out
+        elsif response == "4" # code to view orders
+            puts "************This is supposed to show past orders************"
+            NotAmazon.buyer_task(user)
+        elsif response == "5" # code to leave without checking out
             puts "Ok, that's fine."
         else
-            puts "<< Please enter a digit between 1 and 3 >>"
+            puts "<< Please enter a digit between 1 and 5 >>"
             NotAmazon.buyer_task(user)
         end
 
