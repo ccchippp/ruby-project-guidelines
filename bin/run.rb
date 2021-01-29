@@ -15,17 +15,45 @@ require 'pry'
 # shirt = Item.create(item: "shirt", price: 20.00)
 # socks = Item.create(item: "socks", price: 5.00)
 
-# chip.carts << chips_cart
-
-# temp = Cart.find_by(user_id: chip.id)
-# p temp.items == []
 
 # chips_cart.items << coffee
 # chips_cart.items << shirt
 # chips_cart.items << socks
+# chip.carts << chips_cart
 
-# p temp.items != []
-# p abe.carts
+# temp = Orders.create
+# puts "~~~~~~"
+# puts "~~~~~~"
+# p temp
+# puts "~~~~~~"
+# temp.carts << chips_cart
+# temp.carts << chips_cart
+# temp.carts << chips_cart
+# puts "~~~~~~"
+# puts "~~~~~~"
+# p temp.carts
+# puts "~~~~~~"
+# tem = temp.carts
+# p tem[-1].user_id
+# p tem[-1].user
+# p tem[-1].items
+# puts "~~~~~~"
+# p temp
+# puts "~~~~~~"
+# puts "~~~~~~"
+# p Orders.all
+# puts "~~~~~~"
+# p Orders.all[-1]
+# puts "~~~~~~"
+# puts "~~~~~~"
+# p Orders.all[-1].carts
+# tempp = Orders.all[-1].carts
+# puts "~~~~~~"
+# puts "~~~~~~"
+# ans = Cart.find_by(user_id: tempp[0].user_id)
+# p ans.items
+# puts "~~~~~~"
+
 
 # binding.pry
 
@@ -38,7 +66,6 @@ things to do:
         adding stuff to cart
         probably write seperate method for checking out
     > in owner_task:
-        customer list
         check orders
         add new item to inventory
 =end

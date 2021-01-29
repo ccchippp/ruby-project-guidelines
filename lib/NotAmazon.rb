@@ -106,11 +106,9 @@ class NotAmazon < ActiveRecord::Base
         elsif reponse == "2" #=> restock inventory
             NotAmazon.backroom.each{|item_name, item_price| Item.create(item: item_name, price: item_price)}
         elsif reponse == "3" #=> check customer list
-            #code
-            puts "you input 3"
+            User.display_all_users
         elsif reponse == "4" #=> check orders
-            #code
-            puts "you input 4"
+            Orders.display_all_orders
         elsif reponse == "5" #=> add new item to inventory
             #code
             puts "you input 5"

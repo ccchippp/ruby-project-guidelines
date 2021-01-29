@@ -6,6 +6,14 @@ class User < ActiveRecord::Base
         self.carts.collect {|i| i.items}
     end
 
+    def add_item(product)
+        self.carts.first << product
+    end
+
+    # def create_order(cart)
+
+    # end
+
     def self.display_all_users
         all = User.all
         x = 0
