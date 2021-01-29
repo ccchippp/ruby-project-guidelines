@@ -1,10 +1,10 @@
 class NotAmazon < ActiveRecord::Base
     
     @@username = ""
-    @@inventory = {"coffee" => 16.00, "shirt" => 20.00, "socks" => 5.00}
+    @@backroom = {"coffee" => 16.00, "shirt" => 20.00, "socks" => 5.00}
 
-    def self.inventory
-        @@inventory
+    def self.backroom
+        @@backroom
     end
     
     def self.username
@@ -68,10 +68,10 @@ class NotAmazon < ActiveRecord::Base
             puts "How can we help you? Want to buy something? (yes or no)"
             answer = NotAmazon.reponse
             if answer == "yes"
-            NotAmazon.make_purchase(user)
-            puts "Thank you for your visit!"
+                NotAmazon.make_purchase(user)
+                puts "Thank you for your visit!"
             elsif answer == "no"
-            puts "WHY YOU WASTING MY TIME THEN! LEAVE I HAVE OTHER CUSTOMERS... "
+                puts "WHY YOU WASTING MY TIME THEN! LEAVE I HAVE OTHER CUSTOMERS... "
             end
             puts "Make sure to leave 5 stars on yelp."
         end
@@ -88,9 +88,9 @@ class NotAmazon < ActiveRecord::Base
             if Item.all.empty?
                 puts "Sorry looks like we're out of stock of everything. Please come back later after the owner restocks."
             else
+                Item.display_all_items
                 # code for making a purchase, add items to cart and then checkout when customer is ready
                 # some code here
-                Item.display_all_items
             end
         end
         if cart.items.empty?
@@ -104,7 +104,7 @@ class NotAmazon < ActiveRecord::Base
         if reponse == "1" #=> check Stock
             Item.display_all_items
         elsif reponse == "2" #=> restock inventory
-            NotAmazon.inventory.each{|item_name, item_price| Item.create(item: item_name, price: item_price)}
+            NotAmazon.backroom.each{|item_name, item_price| Item.create(item: item_name, price: item_price)}
         elsif reponse == "3" #=> check customer list
             #code
             puts "you input 3"
@@ -115,7 +115,6 @@ class NotAmazon < ActiveRecord::Base
             #code
             puts "you input 5"
         elsif reponse == "exit"
-            #code
             puts "you input 'exit'"
         elsif reponse == "help"
             puts "<<** These are the task you can work on today. Please enter a digit <1 to 5> or enter 'exit' to quit out **>>"
