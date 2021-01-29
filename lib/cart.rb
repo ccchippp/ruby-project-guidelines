@@ -9,4 +9,8 @@ class Cart < ActiveRecord::Base
     def total_price
         self.items.map(&:price).inject(:+)
     end
+
+    def item_count
+        self.items.count
+    end
 end

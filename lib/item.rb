@@ -4,9 +4,6 @@ class Item < ActiveRecord::Base
 
     def self.newest_item
        newnew = Item.all.last.item
-       p "The newest item added to the shop is #{newnew}!"
+       "The newest item added to the shop is #{newnew}!"
     end
-
-
-
 end
